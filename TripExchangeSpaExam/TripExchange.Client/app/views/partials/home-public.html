@@ -1,0 +1,80 @@
+﻿<div class="container" ng-controller="HomePublicController">
+    <div class="bs-component">
+        <div class="jumbotron">
+            <h1 class="text-center">Welcome to Trip Exchange</h1>
+            <h2 class="text-center">Find your way home!</h2>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Trips</th>
+                    <th>Finished trips</th>
+                    <th>Users</th>
+                    <th>Drivers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-justify">{{trips}}</td>
+                    <td class="text-justify">{{finishedTrips}}</td>
+                    <td class="text-justify">{{users}}</td>
+                    <td class="text-justify">{{drivers}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-striped" ng-controller="TripsController">
+                        <thead class="text-center">
+                            <tr class="text-center">
+                                <td>Latest trips</td>
+                            </tr>
+                            <tr>
+                                <th>Driver</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Departure time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="trip in trips">
+                                <td>
+                                    <a href="#/trips/{{trip.driverName}}">{{trip.driverName}}</a>
+                                </td>
+                                <td>{{trip.from}}</td>
+                                <td>{{trip.to}}</td>
+                                <td>
+                                    <a href="#/trips/{{trip.departureDate}}">{{trip.departureDate}}</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-striped" ng-controller="DriversController">
+                        <thead class="text-center">
+                            <tr class="text-center">
+                                <td>Latest drivers</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Upcoming Trips</th>
+                                <th>Total Trips</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="driver in drivers">
+                                <td>
+                                    <a href="#/drivers/{{driver.id}}">{{driver.name}}</a>
+                                </td>
+                                <td>{{driver.numberOfUpcomingTrips}}</td>
+                                <td>{{driver.numberOfTotalTrips}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="container text-center" ng-controller="TripsController">
+    <div class="row text-center">
+        <div class="col-md-8 text-center">
+            <h2 class="text-center">Trips</h2>
+            <div class="row" ng-if="isUserLoggedIn()===true">
+                <label for="sort">Sort</label>
+                <select ng-model="sort" id="sort">
+                    <option value="" selected="selected">Default</option>
+                    <option value="date">Date</option>
+                    <option value="driver">Driver</option>
+                    <option value="seats">Seats</option>
+                    <option value="from">From</option>
+                    <option value="to">To</option>
+                </select>
+                <label for="order">Order</label>
+                <select ng-model="order" id="order">
+                    <option value="" selected="selected">Default</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+                <label for="from">From</label>
+                <select ng-controller="CitiesController" id="from" ng-model="fromCity">
+                    <option value="" selected="selected">Default</option>
+                    <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+                </select>
+                <label for="to">To</label>
+                <select ng-controller="CitiesController" id="to" ng-model="toCity">
+                    <option value="" selected="selected">Default</option>
+                    <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+                </select>
+                <br />
+                <label for="include-finished">Include finished</label>
+                <input type="checkbox" ng-model="includeFinished" id="include-finished" />
+                <label for="only-mine">Only mine</label>
+                <input type="checkbox" ng-model="onlyMine" id="only-mine"/>
+                <button class="btn btn-success" ng-click="getFilteredTrips(pages,sort,order,fromCity,toCity,includeFinished,onlyMine)">Filter</button>
+                <button class="btn btn-success" ng-click="decreasePages()"><<</button>
+                <input type="text" ng-model="pages"/>
+                <button class="btn btn-success" ng-click="increasePages()">>></button>
+                <button class="btn btn-success pull-right" ng-click="goToCreateTripPage()">Create</button>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">Driver</th>
+                        <th class="text-center">From</th>
+                        <th class="text-center">To</th>
+                        <th class="text-center">Departure Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="trip in trips">
+                        <td>
+                            <a href="#/trips/{{trip.driverName}}">{{trip.driverName}}</a>
+                        </td>
+                        <td>{{trip.from}}</td>
+                        <td>{{trip.to}}</td>
+                        <td>
+                            <a href="#/trips/{{trip.departureDate}}">{{trip.departureDate}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

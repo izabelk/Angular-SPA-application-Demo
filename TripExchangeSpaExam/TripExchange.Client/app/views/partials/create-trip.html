@@ -1,0 +1,39 @@
+﻿<div class="container" ng-controller="TripsController">
+    <div class="well">
+        <form name="tripForm" class="form-horizontal">
+            <fieldset>
+                <legend>Create New Trip</legend>
+                <div class="form-group">
+                    <label for="fromWhere" class="col-md-2 control-label">From</label>
+                    <div class="col-md-10">
+                        <input id="fromWhere" type="text" placeholder="Sofia" ng-model="trip.from" required="required" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="toWhere" class="col-md-2 control-label">To</label>
+                    <div class="col-md-10">
+                        <input type="text" id="toWhere" rows="30" placeholder="Bourgas" ng-model="trip.to" required="required" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="freeSeats" class="col-md-2 control-label">Available seats</label>
+                    <div class="col-md-10">
+                        <input type="text" id="freeSeats" placeholder="2" ng-model="trip.availableSeats" required="required" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="departureTime" class="col-md-2 control-label">Departure time</label>
+                    <div class="col-md-10">
+                        <input type="text" id="departureTime" placeholder="2015-09-29T13:37:00" ng-model="trip.departureTime" class="form-control" />
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button ng-click="createTrip(trip, tripForm)" ng-disabled="tripForm.$invalid" class="btn btn-primary">
+                        Create
+                    </button>
+                    <a href="#/" class="btn btn-primary" ng-click="cancel()">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
